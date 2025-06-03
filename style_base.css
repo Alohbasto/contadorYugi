@@ -136,7 +136,7 @@ body {
 /* Iconos para botones */
 #lpMod__P1::before, #lpMod__P2::before { content: "⚡ "; }
 #dado__P1::before, #dado__P2::before { content: "🎲 "; }
-#moneda__P1::before, #moneda__P2::before { content: "🪙 "; }
+#moneda__P1::before, #moneda__P2::before { content: "🟡"; }
 #cal__P1::before, #cal__P2::before { content: "🧮 "; }
 
 /* configuraciones - MEJORADAS */
