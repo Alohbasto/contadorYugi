@@ -91,10 +91,10 @@ function abrirCalculadoraLP(jugador) {
     
     calc.innerHTML = `
         <h3 style="margin-bottom: 20px; color: #ffd700;">Jugador ${jugador} - LP: ${vidaActual}</h3>
-        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 20px;">
+        <div style="display: grid; grid-template-colu: 20px;">
             <button onclick="cambiarLP(${jugador}, -100)" class="calc-btn subtract">-100</button>
             <button onclick="cambiarLP(${jugador}, -500)" class="calc-btn subtract">-500</button>
-            <button onclick="cambiarLP(${jugador}, -1000)" class="calc-btn subtract">-1000</button>
+            <button onclick="cambiarLP(${jugador}, -1000)" class="mns: repeat(3, 1fr); gap: 10px; margin-bottomcalc-btn subtract">-1000</button>
             <button onclick="cambiarLP(${jugador}, 100)" class="calc-btn add">+100</button>
             <button onclick="cambiarLP(${jugador}, 500)" class="calc-btn add">+500</button>
             <button onclick="cambiarLP(${jugador}, 1000)" class="calc-btn add">+1000</button>
