@@ -7,8 +7,41 @@
     <title>Contador de vida</title>
 </head>
 <body>
-    
-
+    <!-- La app ira en el telefono de forma horizontal(nunca vertical) -->
+    <div id="jugador1">
+        <div id="lifePoints__P1" class="lifePoints"></div>
+        <div id="botones__P1" class="botones">
+            <!-- Para abrir la calculadora que modifique los LP -->
+            <button id="lpMod__P1" class="lifePoints__Mod">LP</button> 
+            <!-- dado de seis -->
+            <button id="dado__P1" class="dado">Dado</button>
+            <!-- cara o cruz -->
+            <button id="moneda__P1" class="moneda">Moneda</button>
+            <!-- Para abrir la calculadora (no modifica los LP, uso: ej.calcular la diferencia de atk) -->
+            <button id="cal__P1" class="calculadora">Cal</button> 
+        </div>
+    </div>   
+    <div id="jugador2">
+        <div id="lifePoints__P2" class="lifePoints"></div>
+        <div id="botones__P2" class="botones">
+            <!-- Para abrir la calculadora que modifique los LP -->
+            <button id="lpMod__P2" class="lifePoints__Mod">LP</button> 
+            <!-- dado de seis -->
+            <button id="dado__P2" class="dado">Dado</button>
+            <!-- cara o cruz -->
+            <button id="moneda__P2" class="moneda">Moneda</button>
+            <!-- Para abrir la calculadora (no modifica los LP, uso: ej.calcular la diferencia de atk) -->
+            <button id="cal__P2" class="calculadora">Cal</button> 
+        </div>
+    </div>   
+    <!-- reinicio -->
+     <!-- en la zona de abajo en medio -->
+    <div id="configuraciones">
+        <button>Reinicio</button>
+        <button>Opciones</button>
+        <!-- deshacer último cambio -->
+        <button>Deshacer</button>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>
