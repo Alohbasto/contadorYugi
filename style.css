@@ -131,10 +131,6 @@ body {
     border: 2px solid #333;
 }
 
-#CalculadoraModal .mostrarRdo {
-    margin-bottom: 20px;
-}
-
 #pantallaCalculadora {
     width: calc(100% - 20px);
     padding: 15px 10px;
@@ -266,11 +262,6 @@ body {
     background: #4ecdc4;
     color: white;
 }
-@media (max-width: 768px) {
-    .lifePoints {
-        font-size: clamp(40px, 8vw, 80px);
-    }
-}
 /*Rotar calculadoras*/
 /* Estilos para los modales rotados */
 .modal {
@@ -293,8 +284,17 @@ body {
     white-space: nowrap;
 }
 
-/* Asegurar que el texto sea legible */
-.modal input,
-.modal button {
-    backface-visibility: hidden;
+
+@media (max-width: 768px) {
+    .lifePoints {
+        font-size: clamp(40px, 8vw, 80px);
+    }
+    .modal {
+        width: 90vw; /* Ocupa 90% del ancho en móviles */
+        min-height: 60vh;
+    }
+    
+    #lpModal, #CalculadoraModal {
+        width: 95vw;
+    }
 }
