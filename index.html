@@ -1,47 +1,109 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style_base.css">
+    <link rel="stylesheet" href="style.css">
     <title>Contador de vida</title>
 </head>
+
 <body>
     <!-- La app ira en el telefono de forma horizontal(nunca vertical) -->
-    <div id="jugador1">
+    <section id="jugador1">
         <div id="lifePoints__P1" class="lifePoints">8000</div>
         <div id="botones__P1" class="botones">
             <!-- Para abrir la calculadora que modifique los LP -->
-            <button id="lpMod__P1" class="lifePoints__Mod">LP</button> 
+            <button id="lpMod__P1" class="lifePoints__Mod" onclick="lpModCalculadora(1)">LP</button>
             <!-- dado de seis -->
-            <button id="dado__P1" class="dado">Dado</button>
+            <button id="dado__P1" class="dado" onclick="tirarDado()">Dado</button>
             <!-- cara o cruz -->
-            <button id="moneda__P1" class="moneda">Moneda</button>
+            <button id="moneda__P1" class="moneda" onclick="tirarMoneda()">Moneda</button>
             <!-- Para abrir la calculadora (no modifica los LP, uso: ej.calcular la diferencia de atk) -->
-            <button id="cal__P1" class="calculadora">Cal</button> 
+            <button id="cal__P1" class="calculadora" onclick="abrirCalculadora()">Cal</button>
         </div>
-    </div>   
-    <div id="jugador2">
+    </section>
+    <section id="jugador2">
         <div id="lifePoints__P2" class="lifePoints">8000</div>
         <div id="botones__P2" class="botones">
             <!-- Para abrir la calculadora que modifique los LP -->
-            <button id="lpMod__P2" class="lifePoints__Mod">LP</button> 
+            <button id="lpMod__P2" class="lifePoints__Mod" onclick="lpModCalculadora(2)">LP</button>
             <!-- dado de seis -->
-            <button id="dado__P2" class="dado">Dado</button>
+            <button id="dado__P2" class="dado" onclick="tirarDado()">Dado</button>
             <!-- cara o cruz -->
-            <button id="moneda__P2" class="moneda">Moneda</button>
+            <button id="moneda__P2" class="moneda" onclick="tirarMoneda()">Moneda</button>
             <!-- Para abrir la calculadora (no modifica los LP, uso: ej.calcular la diferencia de atk) -->
-            <button id="cal__P2" class="calculadora">Cal</button> 
+            <button id="cal__P2" class="calculadora" onclick="abrirCalculadora()">Cal</button>
         </div>
-    </div>   
+    </section>
     <!-- reinicio -->
-     <!-- en la zona de abajo en medio -->
-    <div id="configuraciones">
-        <button>Reinicio</button>
-        <button>Opciones</button>
+    <!-- en la zona de abajo en medio -->
+    <section id="configuraciones">
+        <button onclick="reiniciarJuego()">Reinicio</button>
+        <button onclick="opciones()">Opciones</button>
         <!-- deshacer último cambio -->
-        <button>Deshacer</button>
-    </div>
+        <button onclick="deshacer()">Deshacer</button>
+    </section>
+
+    <dialog id="lpModal" class="modal"  style="--rotacion: 0deg">
+        <div class="contenedor-lp">
+            <div class="grupo-botones">
+                <button onclick="modificarLifePoints(-1000)">-1000</button>
+                <button onclick="modificarLifePoints(-500)">-500</button>
+                <button onclick="modificarLifePoints(-100)">-100</button>
+            </div>
+
+            <div class="grupo-botones">
+                <button onclick="modificarLifePoints(100)">+100</button>
+                <button onclick="modificarLifePoints(500)">+500</button>
+                <button onclick="modificarLifePoints(1000)">+1000</button>
+            </div>
+
+            <div class="entrada-personalizada">
+                <input type="number" id="lpCustom" placeholder="Cantidad">
+                <div>
+                    <button
+                        onclick="modificarLifePoints(-parseInt(document.getElementById('lpCustom').value)||0)">Restar</button>
+                    <button
+                        onclick="modificarLifePoints(parseInt(document.getElementById('lpCustom').value)||0)">Sumar</button>
+                </div>
+            </div>
+
+            <form method="dialog" class="cerrar-modal">
+                <button>Cerrar</button>
+            </form>
+        </div>
+    </dialog>
+    <dialog id="CalculadoraModal" class="modal" style="--rotacion: 0deg">
+        <div class="mostrarRdo">
+            <input type="text" id="pantallaCalculadora" readonly>
+        </div>
+        <div>
+            <button onclick="limpiarCalculadora()">C</button>
+            <button onclick="retrocesoCalculadora()">⬅</button>
+            <button onclick="entradaCalculadora('9')">9</button>
+            <button onclick="entradaCalculadora('8')">8</button>
+            <button onclick="entradaCalculadora('7')">7</button>
+            <button onclick="entradaCalculadora('6')">6</button>
+            <button onclick="entradaCalculadora('5')">5</button>
+            <button onclick="entradaCalculadora('4')">4</button>
+            <button onclick="entradaCalculadora('3')">3</button>
+            <button onclick="entradaCalculadora('2')">2</button>
+            <button onclick="entradaCalculadora('1')">1</button>
+            <button onclick="entradaCalculadora('0')">0</button>
+            <button onclick="operacionCalculadora('+')">+</button>
+            <button onclick="operacionCalculadora('-')">-</button>
+            <button onclick="operacionCalculadora('*')">*</button>
+            <button onclick="operacionCalculadora('/')">/</button>
+            <button onclick="calcularResultado()">=</button>
+        </div>
+        <form method="dialog">
+            <button onclick="cerrarCalculadora()">Cerrar</button>
+        </form>
+    </dialog>
+
+
     <script src="script.js"></script>
 </body>
+
 </html>
