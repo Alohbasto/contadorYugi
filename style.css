@@ -66,7 +66,6 @@ body {
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 #botones__P1 {
-  top: 50%;
   left: 10px;
   display: flex;
   flex-direction: column;
@@ -74,13 +73,27 @@ body {
   /* transform: rotate(90deg); */
 }
 #botones__P2 {
-  top: 50%;
   right: 10px;
   display: flex;
   flex-direction: column;
   gap: 20;
   /* transform: rotate(270deg); */
 }
+.botones > button{
+    all: unset; /* Elimina el efecto del boton de html */
+    cursor: pointer; /* Mantiene el cursor de puntero */
+    display: inline-flex;
+    flex-direction: column; 
+    align-items: center; 
+    gap: 5px; 
+    padding: 8px 12px; 
+    color: #FFD700;
+}
+.botones > button>img{
+    width: 80px; 
+    height: 80px; /* Asegurar proporción */
+    border-radius: 20px;
+} 
 
 /*calculadoras modal*/
 .modal {
@@ -160,6 +173,7 @@ body {
 #configuraciones > button>img{
     width: 80px; 
     height: 80px; /* Asegurar proporción */
+    border-radius: 20px;
 }  
 
 #configuraciones > button:hover {
