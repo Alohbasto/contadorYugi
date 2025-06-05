@@ -262,27 +262,27 @@ body {
     background: #4ecdc4;
     color: white;
 }
-/*Rotar calculadoras*/
+/* Rotar calculadoras
 /* Estilos para los modales rotados */
-.modal {
+/* .modal {
     transform-origin: center center;
     transition: transform 0.3s ease;
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) rotate(0deg);
-}
+} */
 
 /* Ajustes para contenido dentro de modales rotados */
-.modal > div {
+/* .modal > div {
     transform: rotate(calc(-1 * var(--rotacion, 0deg)));
-}
+} */
 
 /* Botones de la calculadora LP */
-#lpModal button {
+/* #lpModal button {
     transform: rotate(calc(-1 * var(--rotacion, 0deg)));
     white-space: nowrap;
-}
+} */ 
 
 
 @media (max-width: 768px) {
