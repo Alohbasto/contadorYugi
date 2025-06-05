@@ -1,6 +1,8 @@
 window.addEventListener("load", function () {
-  inicioJugador(); /*Con esto ya lo llamas */
+  inicioJugador();
+  preloadAudio(); // Añade esta línea
 });
+
 // Espera a que toda la página cargue antes de mostrar quién inicia. Antes se ejecutaba inmediatamente.
 let lp_p1 = 8000;
 let lp_p2 = 8000;
@@ -49,25 +51,39 @@ function lpModCalculadora(jugador) {
   const vidaActual = jugador === 1 ? lp_p1 : lp_p2;
 }
 function modificarLifePoints(cantidad) {
-  //guardar valor en historial.
+  // Guardar valor en historial
   historial.push({
     p1: lp_p1,
     p2: lp_p2,
     accion: `Jugador ${jugadorActual}: ${cantidad > 0 ? "+" : ""}${cantidad}`,
-    timestamp: new Date().toLocaleTimeString(), //saber cuando ocurrio
+    timestamp: new Date().toLocaleTimeString(),
   });
-  if (jugadorActual === 1) {
-    lp_p1 = Math.max(0, lp_p1 + cantidad); // No puede bajar de 0
-    document.getElementById("lifePoints__P1").textContent = lp_p1;
-  } else {
-    lp_p2 = Math.max(0, lp_p2 + cantidad);
-    document.getElementById("lifePoints__P2").textContent = lp_p2;
+
+  // Reproducir sonido
+  if (document.getElementById("audioCheck") && document.getElementById("audioCheck").checked) {
+    playVolume(1);
   }
+
+  // Aplicar el efecto visual
+  const elementoLP = jugadorActual === 1 ? 
+    document.getElementById("lifePoints__P1") : 
+    document.getElementById("lifePoints__P2");
+  
+  const valorActual = jugadorActual === 1 ? lp_p1 : lp_p2;
+  const valorNuevo = Math.max(0, valorActual + cantidad);
+
+  // Actualizar las variables
+  if (jugadorActual === 1) {
+    lp_p1 = valorNuevo;
+  } else {
+    lp_p2 = valorNuevo;
+  }
+
+  // Aplicar efecto de animación
+  effect(20, valorActual, valorNuevo, elementoLP);
 
   if (lp_p1 <= 0 || lp_p2 <= 0) {
     cerrarModal("lpModal");
-    setTimeout(victoria, 300);
-    // setTimeout da tiempo a que se cierre el modal antes de mostrar victoria
   }
 }
 function cerrarModal(id) {
@@ -270,4 +286,84 @@ function cambiarFondo(jugador) {
     fondoP2 = nuevoFondo;
     document.getElementById("jugador2").style.backgroundImage = `url(../fondos/${nuevoFondo})`;
   }
+}
+
+// efecto LP
+// Variables para el efecto de sonido
+var audioIsPlayng = false;
+let looping = false;
+
+// Función para generar números aleatorios
+function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function getRandomDigit() {
+  return getRandomInt(1, 9);
+}
+
+function getRandomNumberOfLength(len) {
+  let ran = "";
+  for (let i = 0; i < len; i++) {
+    ran += getRandomDigit().toString();
+  }
+  return ran;
+}
+
+// Efecto de animación de números
+function effect(remain, current, target, box) {
+  if (target < 0) {
+    target = 0;
+  }
+
+  if (remain > 0) {
+    box.textContent = getRandomNumberOfLength(current.toString().length);
+    setTimeout(function procees() {
+      effect(remain - 1, current, target, box);
+    }, 80);
+  } else {
+    box.textContent = target;
+    document.getElementById("drop_audio").volume = 0;
+    setTimeout(function process() {
+      if (target <= 0) {
+        setTimeout(victoria, 300);
+      }
+    }, 200);
+  }
+}
+
+// Funciones de audio
+function playVolume(volume) {
+  let audio = document.getElementById("drop_audio");
+  audio.pause();
+  audio.muted = false;
+  audio.currentTime = 0;
+  audio.volume = volume;
+  audio.play();
+  if (volume == 1) {
+    audioIsPlayng = true;
+  }
+}
+
+function resetAudioFlag() {
+  audioIsPlayng = false;
+  let audio = document.getElementById("drop_audio");
+  audio.muted = false;
+}
+
+function preloadAudio() {
+  looping = true;
+  
+  let isApple = navigator.userAgent.match(/iPad/i) || 
+                navigator.userAgent.match(/iPhone/i) ||
+                /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+
+  if (!isApple && !audioIsPlayng) {
+    let audio = document.getElementById("drop_audio");
+    audio.muted = true;
+    audio.play();
+  }
+  setTimeout(preloadAudio, 30000);
 }

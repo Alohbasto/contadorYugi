@@ -16,8 +16,8 @@
     <link rel="manifest" href="manifest.json">
 
     <!-- favicon -->
-    <link rel="icon" sizes="32x32" href="/favicon-32x32.png" type="image/png">
-    <link rel="icon" sizes="16x16" href="/favicon-16x16.png" type="image/png">
+    <link rel="icon" sizes="192x192" href="/icon-192.png" type="image/png">
+    <link rel="icon" sizes="512X512" href="/icon-512.png" type="image/png">
     <!-- estilos -->
     <link rel="stylesheet" href="style.css">
     <title>Contador de vida</title>
@@ -179,6 +179,14 @@
                 </select>
             </div>
 
+            <!-- control audio -->
+            <div class="audio-control">
+                <label>
+                    <input type="checkbox" id="audioCheck" checked>
+                    Efectos de sonido
+                </label>
+            </div>
+
             <form method="dialog" class="cerrar-modal">
                 <button>Cerrar</button>
             </form>
@@ -187,6 +195,9 @@
 
 
     <script src="script.js"></script>
+    <audio id="drop_audio" onended="resetAudioFlag();">
+        <source src="./audio/drop.mp3" type="audio/mp3" />
+    </audio>
 </body>
 
 </html>
