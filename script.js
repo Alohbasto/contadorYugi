@@ -209,7 +209,7 @@ function victoria() {
     alert("Jugador 1 gana");
   } else if (lp_p1 <= 0) {
     alert("Jugador 2 gana");
-  }else if (lp_p1 <= 0 && lp_p2 <= 0) {
+  } else if (lp_p1 <= 0 && lp_p2 <= 0) {
     alert("¡Empate! Ambos jugadores han perdido.");
   }
 }
@@ -217,3 +217,37 @@ function victoria() {
 function opciones() {
   alert("En desarrollo");
 }
+
+// modificar imagen fondo
+// Lista de fondos disponibles
+const fondosDisponibles = [
+  { nombre: "Albaz", archivo: "albaz.webp" },
+  { nombre: "Aqua", archivo: "aqua.webp" },
+  { nombre: "Cyber Dragon", archivo: "cyberDragon.webp" },
+  { nombre: "Derrota Almas", archivo: "derrota_almas.webp" },
+  { nombre: "Destiny Hero", archivo: "destinyHero.webp" },
+  { nombre: "Dino", archivo: "dino.webp" },
+  {
+    nombre: "Doncella de Ojos Azules",
+    archivo: "doncella_de_azules_ojos.webp",
+  },
+  {
+    nombre: "Dragón Blanco de Ojos Azules",
+    archivo: "dragon_blanco_de_ojos_azules.webp",
+  },
+  { nombre: "Dreaming Nemleria", archivo: "Dreaming_Nemleria.webp" },
+  { nombre: "Espadachín Llama", archivo: "espadachinLlama.webp" },
+  { nombre: "Evil Hero", archivo: "evilhero.webp" },
+  { nombre: "Invasion", archivo: "invasion.webp" },
+  { nombre: "Jinzo", archivo: "jinzo.webp" },
+  { nombre: "Machine", archivo: "machine.webp" },
+  { nombre: "Mikanko", archivo: "Mikanko.webp" },
+  { nombre: "Neos", archivo: "neos.webp" },
+  { nombre: "Punk", archivo: "punk.webp" },
+  { nombre: "Red Dragon Archfiend", archivo: "RedDragonArchfiend.webp" },
+  { nombre: "Stardust", archivo: "stardust.webp" },
+  { nombre: "Traptrix Archetype", archivo: "TraptrixArchetype.webp" },
+  { nombre: "Trololo", archivo: "trololo.webp" },
+  { nombre: "Vampire", archivo: "vampire.webp" },
+  { nombre: "Zombie", archivo: "zombie.webp" },
+];
