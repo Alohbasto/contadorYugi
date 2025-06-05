@@ -42,7 +42,7 @@ body {
 }
 /*vida*/
 .lifePoints {
-  color: #FFD700;;
+  color: #FFD700;
   display: flex;
   justify-content: center;
   align-content: center;
@@ -68,12 +68,18 @@ body {
 #botones__P1 {
   top: 50%;
   left: 10px;
-  transform: rotate(90deg);
+  display: flex;
+  flex-direction: column;
+  gap: 20;
+  /* transform: rotate(90deg); */
 }
 #botones__P2 {
   top: 50%;
   right: 10px;
-  transform: rotate(270deg);
+  display: flex;
+  flex-direction: column;
+  gap: 20;
+  /* transform: rotate(270deg); */
 }
 
 /*calculadoras modal*/
@@ -140,6 +146,32 @@ body {
   transform: translateX(-50%); 
   /* ¿Por qué translateX(-50%)? Centra perfectamente el elemento sin importar su ancho. Pero te obliga usar left */
 }
+
+#configuraciones > button{
+    all: unset; /* Elimina el efecto del boton de html */
+    cursor: pointer; /* Mantiene el cursor de puntero */
+    display: inline-flex;
+    flex-direction: column; 
+    align-items: center; 
+    gap: 5px; 
+    padding: 8px 12px; 
+    color: #FFD700;
+}
+#configuraciones > button>img{
+    width: 80px; 
+    height: 80px; /* Asegurar proporción */
+}  
+
+#configuraciones > button:hover {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15); /* Sombra más pronunciada al pasar el ratón */
+    transform: translateY(-1px); /* Efecto de levitación opcional */
+    transition: all 0.2s ease; /* Suaviza la transición */
+}
+#configuraciones > button:active {
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1); /* Sombra más plana al hacer clic */
+    transform: translateY(1px); /* Efecto de hundimiento */
+}
+
 /* Estilos específicos para la calculadora */
 #CalculadoraModal {
     width: 300px;
