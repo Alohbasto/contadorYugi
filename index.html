@@ -4,17 +4,21 @@
 <head>
     <meta charset="UTF-8">
     <!-- Para ocultar la parte de arriba de una web -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
     <!-- PWA Meta tags -->
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="theme-color" content="#000000">
     <meta name="apple-mobile-web-app-title" content="Contador de Vida">
-    
+
     <!-- PWA Manifest -->
     <link rel="manifest" href="manifest.json">
 
+    <!-- favicon -->
+    <link rel="icon" sizes="32x32" href="/favicon-32x32.png" type="image/png">
+    <link rel="icon" sizes="16x16" href="/favicon-16x16.png" type="image/png">
+    <!-- estilos -->
     <link rel="stylesheet" href="style.css">
     <title>Contador de vida</title>
 </head>
@@ -56,7 +60,7 @@
         <button onclick="deshacer()">Deshacer</button>
     </section>
 
-    <dialog id="lpModal" class="modal"  style="--rotacion: 0deg">
+    <dialog id="lpModal" class="modal" style="--rotacion: 0deg">
         <div class="contenedor-lp">
             <div class="grupo-botones">
                 <button onclick="modificarLifePoints(-1000)">-1000</button>
@@ -111,6 +115,74 @@
         <form method="dialog">
             <button onclick="cerrarCalculadora()">Cerrar</button>
         </form>
+    </dialog>
+
+    <dialog id="opcionesModal" class="modal">
+        <div class="contenedor-opciones">
+            <h2>Opciones</h2>
+
+            <div class="selector-fondo">
+                <h3>Fondo Jugador 1</h3>
+                <select id="fondoP1Select" onchange="cambiarFondo(1)">
+                    <option value="albaz.webp" selected>Albaz</option>
+                    <option value="aqua.webp">Aqua</option>
+                    <option value="cyberDragon.webp">Cyber Dragon</option>
+                    <option value="derrota_almas.webp">Derrota Almas</option>
+                    <option value="destinyHero.webp">Destiny Hero</option>
+                    <option value="dino.webp">Dino</option>
+                    <option value="doncella_de_azules_ojos.webp">Doncella de Ojos Azules</option>
+                    <option value="dragon_blanco_de_ojos_azules.webp">Dragón Blanco de Ojos Azules</option>
+                    <option value="Dreaming_Nemleria.webp">Dreaming Nemleria</option>
+                    <option value="espadachinLlama.webp">Espadachín Llama</option>
+                    <option value="evilhero.webp">Evil Hero</option>
+                    <option value="invasion.webp">Invasion</option>
+                    <option value="jinzo.webp">Jinzo</option>
+                    <option value="machine.webp">Machine</option>
+                    <option value="Mikanko.webp">Mikanko</option>
+                    <option value="neos.webp">Neos</option>
+                    <option value="punk.webp">Punk</option>
+                    <option value="RedDragonArchfiend.webp">Red Dragon Archfiend</option>
+                    <option value="stardust.webp">Stardust</option>
+                    <option value="TraptrixArchetype.webp">Traptrix Archetype</option>
+                    <option value="trololo.webp">Trololo</option>
+                    <option value="vampire.webp">Vampire</option>
+                    <option value="zombie.webp">Zombie</option>
+                </select>
+            </div>
+
+            <div class="selector-fondo">
+                <h3>Fondo Jugador 2</h3>
+                <select id="fondoP2Select" onchange="cambiarFondo(2)">
+                    <option value="albaz.webp" selected>Albaz</option>
+                    <option value="aqua.webp">Aqua</option>
+                    <option value="cyberDragon.webp">Cyber Dragon</option>
+                    <option value="derrota_almas.webp">Derrota Almas</option>
+                    <option value="destinyHero.webp">Destiny Hero</option>
+                    <option value="dino.webp">Dino</option>
+                    <option value="doncella_de_azules_ojos.webp">Doncella de Ojos Azules</option>
+                    <option value="dragon_blanco_de_ojos_azules.webp">Dragón Blanco de Ojos Azules</option>
+                    <option value="Dreaming_Nemleria.webp">Dreaming Nemleria</option>
+                    <option value="espadachinLlama.webp">Espadachín Llama</option>
+                    <option value="evilhero.webp">Evil Hero</option>
+                    <option value="invasion.webp">Invasion</option>
+                    <option value="jinzo.webp">Jinzo</option>
+                    <option value="machine.webp">Machine</option>
+                    <option value="Mikanko.webp">Mikanko</option>
+                    <option value="neos.webp">Neos</option>
+                    <option value="punk.webp">Punk</option>
+                    <option value="RedDragonArchfiend.webp">Red Dragon Archfiend</option>
+                    <option value="stardust.webp">Stardust</option>
+                    <option value="TraptrixArchetype.webp">Traptrix Archetype</option>
+                    <option value="trololo.webp">Trololo</option>
+                    <option value="vampire.webp">Vampire</option>
+                    <option value="zombie.webp">Zombie</option>
+                </select>
+            </div>
+
+            <form method="dialog" class="cerrar-modal">
+                <button>Cerrar</button>
+            </form>
+        </div>
     </dialog>
 
 

@@ -251,3 +251,23 @@ const fondosDisponibles = [
   { nombre: "Vampire", archivo: "vampire.webp" },
   { nombre: "Zombie", archivo: "zombie.webp" },
 ];
+// Fondos actuales
+let fondoP1 = "jinzo.webp";
+let fondoP2 = "albaz.webp";
+
+function opciones() {
+  document.getElementById("opcionesModal").showModal();
+}
+
+function cambiarFondo(jugador) {
+  const selectId = jugador === 1 ? "fondoP1Select" : "fondoP2Select";
+  const nuevoFondo = document.getElementById(selectId).value;
+  
+  if (jugador === 1) {
+    fondoP1 = nuevoFondo;
+    document.getElementById("jugador1").style.backgroundImage = `url(../fondos/${nuevoFondo})`;
+  } else {
+    fondoP2 = nuevoFondo;
+    document.getElementById("jugador2").style.backgroundImage = `url(../fondos/${nuevoFondo})`;
+  }
+}
