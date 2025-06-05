@@ -1,3 +1,10 @@
+/* Soporte para dispositivos con notch */
+@supports (padding: max(0px)) {
+  body {
+    padding-left: max(12px, env(safe-area-inset-left));
+    padding-right: max(12px, env(safe-area-inset-right));
+  }
+}
 body {
   display: flex;
   height: 100vh;
@@ -5,6 +12,12 @@ body {
   padding: 0;
   box-sizing: border-box;
   overflow: hidden; /*En tu código original podían aparecer barras de scroll accidentalmente. Esto las elimina completamente.*/
+
+    /* Evitar zoom accidental */
+  touch-action: manipulation;
+  -webkit-user-select: none;
+  user-select: none;
+
 }
 /*Jugadores*/
 #jugador1,
