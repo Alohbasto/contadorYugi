@@ -379,6 +379,13 @@ body {
     padding: 12px;
     margin-top: 10px;
 }
+#duelModal {
+  padding: 0; /* Elimina el padding por defecto */
+  border: none; /* Elimina el borde por defecto */
+  background: transparent; /* Fondo transparente */
+  max-width: none; /* Elimina restricciones de ancho */
+  max-height: none; /* Elimina restricciones de alto */
+}
 
 
 @media (max-width: 768px) {

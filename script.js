@@ -22,6 +22,11 @@ function inicioJugador() {
   } else {
     alert("Inicia el jugador 2");
   }
+    setTimeout(() => {
+    mostrarImagenDuel();
+  }, 500); // Pequeño delay para que se cierre el alert
+
+
 }
 // botones jugadores
 function tirarDado() {
@@ -367,3 +372,17 @@ function preloadAudio() {
   }
   setTimeout(preloadAudio, 30000);
 }
+
+function mostrarImagenDuel() {
+  const modal = document.getElementById("duelModal");
+  modal.showModal();
+  // Crear un objeto de audio y cargar el archivo
+  const audio = new Audio('audio/duel.mp3');
+  
+  // Reproducir el audio
+  audio.play();
+  
+  // Auto-cerrar después de 2 segundos
+  setTimeout(() => {
+    modal.close();
+  }, 2500);}
