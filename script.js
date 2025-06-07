@@ -286,10 +286,10 @@ function cambiarFondo(jugador) {
   
   if (jugador === 1) {
     fondoP1 = nuevoFondo;
-    document.getElementById("jugador1").style.backgroundImage = `url(../fondos/${nuevoFondo})`;
+    document.getElementById("jugador1").style.backgroundImage = `url(./fondos/${nuevoFondo})`;
   } else {
     fondoP2 = nuevoFondo;
-    document.getElementById("jugador2").style.backgroundImage = `url(../fondos/${nuevoFondo})`;
+    document.getElementById("jugador2").style.backgroundImage = `url(./fondos/${nuevoFondo})`;
   }
 }
 
@@ -377,7 +377,7 @@ function mostrarImagenDuel() {
   const modal = document.getElementById("duelModal");
   modal.showModal();
   // Crear un objeto de audio y cargar el archivo
-  const audio = new Audio('audio/duel.mp3');
+  const audio = new Audio('./audio/duel.mp3');
   
   // Reproducir el audio
   audio.play();
