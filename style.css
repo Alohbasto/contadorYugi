@@ -31,12 +31,12 @@ body {
 }
 
 #jugador1 {
-  background-image: url(./fondos/jinzo.webp);
+  background-image: url(fondos/jinzo.webp);
   background-repeat: no-repeat;
   background-size: cover;
 }
 #jugador2 {
-  background-image: url(./fondos/albaz.webp);
+  background-image: url(fondos/albaz.webp);
   background-repeat: no-repeat;
   background-size: cover;
 }
