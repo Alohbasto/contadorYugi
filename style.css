@@ -5,20 +5,20 @@
     padding-right: max(12px, env(safe-area-inset-right));
   }
 }
+
 body {
   display: flex;
   height: 100vh;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  overflow: hidden; /*En tu código original podían aparecer barras de scroll accidentalmente. Esto las elimina completamente.*/
-
-    /* Evitar zoom accidental */
+  overflow: hidden;
+  /* Evitar zoom accidental */
   touch-action: manipulation;
   -webkit-user-select: none;
   user-select: none;
-
 }
+
 /*Jugadores*/
 #jugador1,
 #jugador2 {
@@ -27,7 +27,7 @@ body {
   flex: 1;
   height: 100vh;
   justify-content: center;
-  align-items: center; /*align-content funciona con múltiples líneas de flex, align-items centra elementos individuales. Para centrar un solo elemento (los puntos de vida), align-items es correcto */
+  align-items: center;
 }
 
 #jugador1 {
@@ -35,11 +35,13 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
 }
+
 #jugador2 {
   background-image: url(fondos/albaz.webp);
   background-repeat: no-repeat;
   background-size: cover;
 }
+
 /*vida*/
 .lifePoints {
   color: #FFD700;
@@ -47,357 +49,743 @@ body {
   justify-content: center;
   align-content: center;
   font-size: clamp(60px, 10vw, 120px);
-  /*Antes: font-size: 100px;
-    ¿Qué hace clamp()?
-    60px = tamaño mínimo
-    10vw = 10% del ancho de viewport (se adapta)
-    120px = tamaño máximo*/
   font-weight: 600;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   user-select: none;
 }
+
 /*botones laterales*/
 .botones {
   position: absolute;
-  gap: 10px;
+  gap: 15px;
+  z-index: 10;
 }
-.botones:hover{
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+
+.botones:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
+
 #botones__P1 {
-  left: 10px;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
   display: flex;
   flex-direction: column;
-  gap: 20;
-  /* transform: rotate(90deg); */
+  gap: 15px;
 }
+
 #botones__P2 {
-  right: 10px;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
   display: flex;
   flex-direction: column;
-  gap: 20;
-  /* transform: rotate(270deg); */
+  gap: 15px;
 }
-.botones > button{
-    all: unset; /* Elimina el efecto del boton de html */
-    cursor: pointer; /* Mantiene el cursor de puntero */
-    display: inline-flex;
-    flex-direction: column; 
-    align-items: center; 
-    gap: 5px; 
-    padding: 8px 12px; 
-    color: #FFD700;
+
+.botones > button {
+  all: unset;
+  cursor: pointer;
+  display: inline-flex;
+  flex-direction: column; 
+  align-items: center; 
+  gap: 8px; 
+  padding: 12px 16px; 
+  color: #FFD700;
+  
+  /* Fondo semitransparente para mejor visibilidad */
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 15px;
+  border: 2px solid rgba(255, 215, 0, 0.8);
+  
+  /* Sombra para destacar del fondo */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  
+  /* Transición suave */
+  transition: all 0.3s ease;
+  
+  /* Texto más legible */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  font-weight: bold;
+  font-size: 14px;
 }
-.botones > button>img{
-    width: 80px; 
-    height: 80px; /* Asegurar proporción */
-    border-radius: 20px;
+
+.botones > button:hover {
+  background: rgba(0, 0, 0, 0.9);
+  border-color: #FFD700;
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.7);
+}
+
+.botones > button:active {
+  transform: translateY(-1px) scale(0.98);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.botones > button > img {
+  width: 60px; 
+  height: 60px;
+  border-radius: 12px;
+  filter: brightness(1.1) contrast(1.1);
 } 
 
 /*calculadoras modal*/
 .modal {
-    border: none;
-    border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
 }
+
 .modal::backdrop {
-    background-color: rgba(0,0,0,0.5);
+  background-color: rgba(0,0,0,0.5);
 }
+
 /* grid calculadora */
 #lpModal .modal-content {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
 }
+
 .calc-buttons {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 8px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
 }
+
 /*calculadora elementos*/
 .calculator-display {
-    margin-bottom: 15px;
+  margin-bottom: 15px;
 }
 
 #calculator-screen {
-    width: 100%;
-    padding: 10px;
-    font-size: 1.5rem;
-    text-align: right;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-bottom: 10px;
+  width: 100%;
+  padding: 10px;
+  font-size: 1.5rem;
+  text-align: right;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
 }
 
 .calc-buttons {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 8px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
 }
 
 .calc-buttons button {
-    padding: 10px;
-    font-size: 1.2rem;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    background-color: #f0f0f0;
+  padding: 10px;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #f0f0f0;
 }
 
 .calc-buttons button:hover {
-    background-color: #ddd;
+  background-color: #ddd;
 }
+
 /*Config*/
 #configuraciones {
-  /* en la parte de arriba en el centro */
   position: absolute;
   justify-content: center;
   align-content: center;
   left: 50%;
-  top: 40px;
-  transform: translateX(-50%); 
-  /* ¿Por qué translateX(-50%)? Centra perfectamente el elemento sin importar su ancho. Pero te obliga usar left */
+  top: 30px;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  gap: 10px;
 }
 
-#configuraciones > button{
-    all: unset; /* Elimina el efecto del boton de html */
-    cursor: pointer; /* Mantiene el cursor de puntero */
-    display: inline-flex;
-    flex-direction: column; 
-    align-items: center; 
-    gap: 5px; 
-    padding: 8px 12px; 
-    color: #FFD700;
+#configuraciones > button {
+  all: unset;
+  cursor: pointer;
+  display: inline-flex;
+  flex-direction: column; 
+  align-items: center; 
+  gap: 8px; 
+  padding: 10px 14px; 
+  color: #FFD700;
+  
+  /* Fondo semitransparente */
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 12px;
+  border: 2px solid rgba(255, 215, 0, 0.6);
+  
+  /* Sombra */
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4);
+  
+  /* Transición */
+  transition: all 0.3s ease;
+  
+  /* Texto más legible */
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+  font-weight: bold;
+  font-size: 12px;
 }
-#configuraciones > button>img{
-    width: 80px; 
-    height: 80px; /* Asegurar proporción */
-    border-radius: 20px;
+
+#configuraciones > button > img {
+  width: 50px; 
+  height: 50px;
+  border-radius: 10px;
+  filter: brightness(1.1);
 }  
 
 #configuraciones > button:hover {
-    box-shadow: 0 4px 8px rgba(0,0,0,0.15); /* Sombra más pronunciada al pasar el ratón */
-    transform: translateY(-1px); /* Efecto de levitación opcional */
-    transition: all 0.2s ease; /* Suaviza la transición */
+  background: rgba(0, 0, 0, 0.9);
+  border-color: #FFD700;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+  transform: translateY(-2px) scale(1.03);
 }
+
 #configuraciones > button:active {
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1); /* Sombra más plana al hacer clic */
-    transform: translateY(1px); /* Efecto de hundimiento */
+  transform: translateY(0px) scale(0.98);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
 }
 
 /* Estilos específicos para la calculadora */
 #CalculadoraModal {
-    width: 300px;
-    padding: 20px;
-    background: white;
-    border: 2px solid #333;
+  width: 300px;
+  padding: 20px;
+  background: white;
+  border: 2px solid #333;
 }
 
 #pantallaCalculadora {
-    width: calc(100% - 20px);
-    padding: 15px 10px;
-    font-size: 1.8rem;
-    text-align: right;
-    border: 2px solid #ddd;
-    border-radius: 8px;
-    background: #f8f8f8;
-    margin-bottom: 15px;
+  width: calc(100% - 20px);
+  padding: 15px 10px;
+  font-size: 1.8rem;
+  text-align: right;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  background: #f8f8f8;
+  margin-bottom: 15px;
 }
 
 #CalculadoraModal > div:nth-of-type(2) {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
-    margin-bottom: 15px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-bottom: 15px;
 }
 
 #CalculadoraModal button {
-    padding: 15px;
-    font-size: 1.2rem;
-    border: none;
-    border-radius: 8px;
-    background: #e0e0e0;
-    cursor: pointer;
-    transition: all 0.2s;
+  padding: 15px;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 8px;
+  background: #e0e0e0;
+  cursor: pointer;
+  transition: all 0.2s;
 }
 
 #CalculadoraModal button:hover {
-    background: #d0d0d0;
-    transform: translateY(-2px);
+  background: #d0d0d0;
+  transform: translateY(-2px);
 }
 
 #CalculadoraModal button[onclick*="limpiar"],
 #CalculadoraModal button[onclick*="retroceso"] {
-    background: #ff6b6b;
-    color: white;
+  background: #ff6b6b;
+  color: white;
 }
 
 #CalculadoraModal button[onclick*="operacion"] {
-    background: #4ecdc4;
-    color: white;
+  background: #4ecdc4;
+  color: white;
 }
 
 #CalculadoraModal button[onclick*="calcularResultado"] {
-    background: #48dbfb;
-    color: white;
-    grid-column: span 4;
+  background: #48dbfb;
+  color: white;
+  grid-column: span 4;
 }
 
 #CalculadoraModal form button {
-    width: 100%;
-    padding: 10px;
-    background: #576574;
-    color: white;
-    font-size: 1rem;
+  width: 100%;
+  padding: 10px;
+  background: #576574;
+  color: white;
+  font-size: 1rem;
 }
 
 /* Estilos específicos para el modal de LP */
 #lpModal {
-    width: 320px;
-    padding: 20px;
-    background: white;
-    border: 2px solid #333;
+  width: 320px;
+  padding: 20px;
+  background: white;
+  border: 2px solid #333;
 }
 
 #lpModal .contenedor-lp {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
 #lpModal .grupo-botones {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
 }
 
 #lpModal .entrada-personalizada {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 #lpModal .entrada-personalizada input {
-    width: 100%;
-    padding: 10px;
-    font-size: 1rem;
-    border: 2px solid #ddd;
-    border-radius: 6px;
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  border: 2px solid #ddd;
+  border-radius: 6px;
 }
 
 #lpModal .entrada-personalizada div {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
 }
 
 #lpModal button {
-    padding: 12px;
-    font-size: 1rem;
-    border: none;
-    border-radius: 6px;
-    background: #e0e0e0;
-    cursor: pointer;
-    transition: all 0.2s;
+  padding: 12px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 6px;
+  background: #e0e0e0;
+  cursor: pointer;
+  transition: all 0.2s;
 }
 
 #lpModal button:hover {
-    background: #d0d0d0;
-    transform: translateY(-2px);
+  background: #d0d0d0;
+  transform: translateY(-2px);
 }
 
 #lpModal .cerrar-modal button {
-    width: 100%;
-    background: #576574;
-    color: white;
-    padding: 10px;
-    margin-top: 10px;
+  width: 100%;
+  background: #576574;
+  color: white;
+  padding: 10px;
+  margin-top: 10px;
 }
 
 /* Estilos para los botones de negativo/positivo */
 #lpModal .grupo-botones:nth-of-type(1) button {
-    background: #ff6b6b;
-    color: white;
+  background: #ff6b6b;
+  color: white;
 }
 
 #lpModal .grupo-botones:nth-of-type(2) button {
-    background: #4ecdc4;
-    color: white;
+  background: #4ecdc4;
+  color: white;
 }
 
 /* Estilos para el modal de opciones */
 #opcionesModal {
-    width: 350px;
-    padding: 20px;
-    background: white;
-    border: 2px solid #333;
+  width: 350px;
+  padding: 20px;
+  background: white;
+  border: 2px solid #333;
 }
 
 #opcionesModal .contenedor-opciones {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 #opcionesModal h2 {
-    text-align: center;
-    margin: 0;
-    color: #333;
+  text-align: center;
+  margin: 0;
+  color: #333;
 }
 
 #opcionesModal .selector-fondo {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 #opcionesModal h3 {
-    margin: 0;
-    color: #555;
-    font-size: 1.1rem;
+  margin: 0;
+  color: #555;
+  font-size: 1.1rem;
 }
 
 #opcionesModal select {
-    width: 100%;
-    padding: 10px;
-    font-size: 1rem;
-    border: 2px solid #ddd;
-    border-radius: 6px;
-    background: white;
-    cursor: pointer;
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  border: 2px solid #ddd;
+  border-radius: 6px;
+  background: white;
+  cursor: pointer;
 }
 
 #opcionesModal select:hover {
-    border-color: #4ecdc4;
+  border-color: #4ecdc4;
+}
+
+#opcionesModal .audio-control {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+#opcionesModal .audio-control label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
 }
 
 #opcionesModal .cerrar-modal button {
-    width: 100%;
-    background: #576574;
-    color: white;
-    padding: 12px;
-    margin-top: 10px;
+  width: 100%;
+  background: #576574;
+  color: white;
+  padding: 12px;
+  margin-top: 10px;
 }
+
 #duelModal {
-  padding: 0; /* Elimina el padding por defecto */
-  border: none; /* Elimina el borde por defecto */
-  background: transparent; /* Fondo transparente */
-  max-width: none; /* Elimina restricciones de ancho */
-  max-height: none; /* Elimina restricciones de alto */
+  padding: 0;
+  border: none;
+  background: transparent;
+  max-width: none;
+  max-height: none;
 }
 
+/* Media Queries */
+/* Media Queries */
 
-@media (max-width: 768px) {
-    .lifePoints {
-        font-size: clamp(40px, 8vw, 80px);
-    }
-    .modal {
-        width: 90vw; /* Ocupa 90% del ancho en móviles */
-        min-height: 60vh;
-    }
-    
-    #lpModal, #CalculadoraModal {
-        width: 95vw;
-    }
+/* Pantallas muy pequeñas (móviles pequeños) */
+@media (max-width: 480px) {
+  .lifePoints {
+    font-size: clamp(35px, 7vw, 60px);
+  }
+  
+  .botones > button {
+    gap: 4px;
+    padding: 6px 8px;
+    font-size: 10px;
+  }
+  
+  .botones > button > img {
+    width: 35px; 
+    height: 35px;
+    border-radius: 6px;
+  }
+  
+  #configuraciones > button > img {
+    width: 30px; 
+    height: 30px;
+  }
+  
+  #configuraciones > button {
+    padding: 6px 8px;
+    font-size: 10px;
+  }
+  
+  #botones__P1, #botones__P2 {
+    gap: 8px;
+  }
+  
+  #botones__P1 {
+    left: 5px;
+  }
+  
+  #botones__P2 {
+    right: 5px;
+  }
+  
+  #configuraciones {
+    top: 10px;
+    gap: 5px;
+  }
+  
+  /* Calculadoras en móviles muy pequeños */
+  #lpModal, #CalculadoraModal, #opcionesModal {
+    width: 95vw;
+    max-width: 300px;
+    padding: 15px;
+  }
+  
+  #pantallaCalculadora {
+    font-size: 1.4rem;
+    padding: 10px;
+  }
+  
+  #CalculadoraModal button {
+    padding: 10px;
+    font-size: 1rem;
+  }
+  
+  #lpModal button {
+    padding: 8px;
+    font-size: 0.9rem;
+  }
+}
+
+/* Pantallas pequeñas (móviles) */
+@media (max-width: 600px) and (min-width: 481px) {
+  .lifePoints {
+    font-size: clamp(40px, 8vw, 70px);
+  }
+  
+  .botones > button {
+    gap: 5px;
+    padding: 7px 10px;
+    font-size: 11px;
+  }
+  
+  .botones > button > img {
+    width: 40px; 
+    height: 40px;
+    border-radius: 7px;
+  }
+  
+  #configuraciones > button > img {
+    width: 35px; 
+    height: 35px;
+  }
+  
+  #configuraciones > button {
+    padding: 7px 10px;
+    font-size: 11px;
+  }
+  
+  #botones__P1, #botones__P2 {
+    gap: 10px;
+  }
+  
+  #botones__P1 {
+    left: 8px;
+  }
+  
+  #botones__P2 {
+    right: 8px;
+  }
+  
+  #configuraciones {
+    top: 15px;
+    gap: 6px;
+  }
+  
+  /* Calculadoras en móviles */
+  #lpModal, #CalculadoraModal, #opcionesModal {
+    width: 90vw;
+    max-width: 320px;
+    padding: 18px;
+  }
+  
+  #pantallaCalculadora {
+    font-size: 1.5rem;
+    padding: 12px;
+  }
+}
+
+/* Pantallas medianas (tablets) */
+@media (max-width: 800px) and (min-width: 601px) {
+  .lifePoints {
+    font-size: clamp(50px, 9vw, 90px);
+  }
+  
+  .botones > button {
+    gap: 6px;
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+  
+  .botones > button > img {
+    width: 45px; 
+    height: 45px;
+    border-radius: 8px;
+  }
+  
+  #configuraciones > button > img {
+    width: 40px; 
+    height: 40px;
+  }
+  
+  #configuraciones > button {
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+  
+  #botones__P1, #botones__P2 {
+    gap: 12px;
+  }
+  
+  #botones__P1 {
+    left: 10px;
+  }
+  
+  #botones__P2 {
+    right: 10px;
+  }
+  
+  #configuraciones {
+    top: 20px;
+    gap: 8px;
+  }
+  
+  /* Calculadoras en tablets */
+  #lpModal, #CalculadoraModal {
+    width: 70vw;
+    max-width: 350px;
+  }
+  
+  #opcionesModal {
+    width: 80vw;
+    max-width: 400px;
+  }
+}
+
+/* Pantallas grandes (desktop pequeño) */
+@media (max-width: 1024px) and (min-width: 801px) {
+  .lifePoints {
+    font-size: clamp(60px, 10vw, 100px);
+  }
+  
+  .botones > button {
+    gap: 7px;
+    padding: 10px 14px;
+    font-size: 13px;
+  }
+  
+  .botones > button > img {
+    width: 50px; 
+    height: 50px;
+    border-radius: 10px;
+  }
+  
+  #configuraciones > button > img {
+    width: 45px; 
+    height: 45px;
+  }
+  
+  /* Calculadoras en desktop pequeño */
+  #lpModal, #CalculadoraModal {
+    width: 350px;
+  }
+  
+  #opcionesModal {
+    width: 400px;
+  }
+}
+
+/* Pantallas muy grandes (desktop grande) */
+@media (min-width: 1400px) {
+  .lifePoints {
+    font-size: clamp(80px, 12vw, 140px);
+  }
+  
+  .botones > button {
+    gap: 10px;
+    padding: 14px 18px;
+    font-size: 16px;
+  }
+  
+  .botones > button > img {
+    width: 70px; 
+    height: 70px;
+    border-radius: 14px;
+  }
+  
+  #configuraciones > button > img {
+    width: 60px; 
+    height: 60px;
+  }
+  
+  #configuraciones > button {
+    padding: 12px 16px;
+    font-size: 14px;
+  }
+  
+  #botones__P1 {
+    left: 20px;
+  }
+  
+  #botones__P2 {
+    right: 20px;
+  }
+  
+  /* Calculadoras en pantallas muy grandes */
+  #lpModal, #CalculadoraModal {
+    width: 400px;
+    padding: 25px;
+  }
+  
+  #opcionesModal {
+    width: 450px;
+    padding: 25px;
+  }
+  
+  #pantallaCalculadora {
+    font-size: 2rem;
+    padding: 18px 12px;
+  }
+  
+  #CalculadoraModal button {
+    padding: 18px;
+    font-size: 1.4rem;
+  }
+  
+  #lpModal button {
+    padding: 15px;
+    font-size: 1.1rem;
+  }
+}
+
+/* Orientación horizontal en móviles */
+@media (max-height: 500px) and (orientation: landscape) {
+  .lifePoints {
+    font-size: clamp(30px, 6vh, 50px);
+  }
+  
+  .botones > button {
+    gap: 3px;
+    padding: 5px 8px;
+    font-size: 9px;
+  }
+  
+  .botones > button > img {
+    width: 30px; 
+    height: 30px;
+    border-radius: 5px;
+  }
+  
+  #configuraciones > button > img {
+    width: 25px; 
+    height: 25px;
+  }
+  
+  #configuraciones > button {
+    padding: 5px 8px;
+    font-size: 9px;
+  }
+  
+  #botones__P1, #botones__P2 {
+    gap: 6px;
+  }
+  
+  #configuraciones {
+    top: 5px;
+    gap: 4px;
+  }
+  
+  /* Calculadoras en landscape móvil */
+  #lpModal, #CalculadoraModal, #opcionesModal {
+    width: 85vw;
+    max-width: 350px;
+    max-height: 85vh;
+    overflow-y: auto;
+  }
 }
