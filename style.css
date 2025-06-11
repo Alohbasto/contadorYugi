@@ -468,7 +468,7 @@ body {
 /* Pantallas muy pequeñas (móviles pequeños) */
 @media (max-width: 480px) {
   .lifePoints {
-    font-size: clamp(35px, 7vw, 60px);
+    font-size: clamp(45px, 7vw, 60px);
   }
   
   .botones > button {
