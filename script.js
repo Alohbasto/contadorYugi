@@ -243,6 +243,7 @@ function opciones() {
 // Lista de fondos disponibles
 const fondosDisponibles = [
   { nombre: "Albaz", archivo: "albaz.webp" },
+  { nombre: "Aventureros", archivo: "adventurer_token.webp" },
   { nombre: "Aqua", archivo: "aqua.webp" },
   { nombre: "Cyber Dragon", archivo: "cyberDragon.webp" },
   { nombre: "Derrota Almas", archivo: "derrota_almas.webp" },
