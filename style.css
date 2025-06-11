@@ -400,4 +400,17 @@ body {
     #lpModal, #CalculadoraModal {
         width: 95vw;
     }
+    #pantallaCalculadora {
+    width: calc(95%);
+    }
+    .botones > button{
+    gap: 3px;
+    }
+    .botones > button>img{
+        width: 50px; 
+        height: 50px; /* Asegurar proporción */
+        border-radius: 20px;
+    } 
+
+
 }
