@@ -747,7 +747,7 @@ body {
 /* Orientación horizontal en móviles */
 @media (max-height: 500px) and (orientation: landscape) {
   .lifePoints {
-    font-size: clamp(30px, 6vh, 50px);
+    font-size: clamp(50px, 6vh, 50px);
   }
   
   .botones > button {
@@ -763,8 +763,8 @@ body {
   }
   
   #configuraciones > button > img {
-    width: 25px; 
-    height: 25px;
+    width: 30px; 
+    height: 30px;
   }
   
   #configuraciones > button {
