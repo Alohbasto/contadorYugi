@@ -388,7 +388,7 @@ body {
 }
 
 
-@media (max-width: 768px) {
+@media (max-width: 800px) {
     .lifePoints {
         font-size: clamp(40px, 8vw, 80px);
     }
