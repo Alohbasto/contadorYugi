@@ -411,6 +411,194 @@ body {
         height: 50px; /* Asegurar proporción */
         border-radius: 20px;
     } 
+.botones {
+  position: absolute;
+  gap: 15px;
+  z-index: 10; /* Asegura que estén por encima del fondo */
+}
+
+.botones:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+#botones__P1 {
+  left: 15px; /* Aumenté el margen del borde */
+  top: 50%;
+  transform: translateY(-50%); /* Centra verticalmente */
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+#botones__P2 {
+  right: 15px; /* Aumenté el margen del borde */
+  top: 50%;
+  transform: translateY(-50%); /* Centra verticalmente */
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.botones > button{
+    all: unset;
+    cursor: pointer;
+    display: inline-flex;
+    flex-direction: column; 
+    align-items: center; 
+    gap: 8px; 
+    padding: 12px 16px; 
+    color: #FFD700;
+    
+    /* Fondo semitransparente para mejor visibilidad */
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 15px;
+    border: 2px solid rgba(255, 215, 0, 0.8);
+    
+    /* Sombra para destacar del fondo */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    
+    /* Transición suave */
+    transition: all 0.3s ease;
+}
+
+.botones > button:hover {
+    background: rgba(0, 0, 0, 0.9);
+    border-color: #FFD700;
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.7);
+}
+
+.botones > button:active {
+    transform: translateY(-1px) scale(0.98);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.botones > button>img{
+    width: 60px; 
+    height: 60px;
+    border-radius: 12px;
+    /* Filtro para mejorar contraste si es necesario */
+    filter: brightness(1.1) contrast(1.1);
+} 
+
+/* Texto de los botones más visible */
+.botones > button {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    font-weight: bold;
+    font-size: 14px;
+}
+
+/* Configuraciones del centro también mejoradas */
+#configuraciones {
+  position: absolute;
+  justify-content: center;
+  align-content: center;
+  left: 50%;
+  top: 30px; /* Reduje un poco la distancia del top */
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  gap: 10px; /* Espaciado entre botones */
+}
+
+#configuraciones > button{
+    all: unset;
+    cursor: pointer;
+    display: inline-flex;
+    flex-direction: column; 
+    align-items: center; 
+    gap: 8px; 
+    padding: 10px 14px; 
+    color: #FFD700;
+    
+    /* Fondo semitransparente */
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 12px;
+    border: 2px solid rgba(255, 215, 0, 0.6);
+    
+    /* Sombra */
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4);
+    
+    /* Transición */
+    transition: all 0.3s ease;
+    
+    /* Texto más legible */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+    font-weight: bold;
+    font-size: 12px;
+}
+
+#configuraciones > button>img{
+    width: 50px; 
+    height: 50px;
+    border-radius: 10px;
+    filter: brightness(1.1);
+}  
+
+#configuraciones > button:hover {
+    background: rgba(0, 0, 0, 0.9);
+    border-color: #FFD700;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+    transform: translateY(-2px) scale(1.03);
+}
+
+#configuraciones > button:active {
+    transform: translateY(0px) scale(0.98);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* Responsive mejorado */
+@media (max-width: 800px) {
+    .lifePoints {
+        font-size: clamp(40px, 8vw, 80px);
+    }
+    
+    .modal {
+        width: 90vw;
+        min-height: 60vh;
+    }
+    
+    #lpModal, #CalculadoraModal {
+        width: 95vw;
+    }
+    
+    #pantallaCalculadora {
+        width: calc(95%);
+    }
+    
+    .botones > button{
+        gap: 6px;
+        padding: 8px 12px;
+    }
+    
+    .botones > button>img{
+        width: 45px; 
+        height: 45px;
+        border-radius: 8px;
+    }
+    
+    #configuraciones > button>img{
+        width: 40px; 
+        height: 40px;
+    }
+    
+    #botones__P1 {
+        left: 10px;
+        gap: 12px;
+    }
+    
+    #botones__P2 {
+        right: 10px;
+        gap: 12px;
+    }
+    
+    #configuraciones {
+        top: 20px;
+        gap: 8px;
+    }
+    }
+
 
 
 }
