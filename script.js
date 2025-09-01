@@ -194,26 +194,41 @@ function retrocesoCalculadora() {
 }
 
 // copiar valor del resultado de la calculadora
-const input = document.getElementById('pantallaCalculadora');
-
+window.addEventListener("load", function () {
+  inicioJugador();
+  preloadAudio();
+  
+  // Configurar el copiado DESPUÉS de que la página cargue
+  const input = document.getElementById('pantallaCalculadora');
+  
+  if (input) {
     // Función para copiar al portapapeles
     function copiarAlPortapapeles() {
-        // Selecciona el texto
-        input.select();
-        input.setSelectionRange(0, 99999); // Para móviles
+      // Selecciona el texto
+      input.select();
+      input.setSelectionRange(0, 99999); // Para móviles
 
-        // Copia al portapapeles
-        navigator.clipboard.writeText(input.value)
-            .then(() => {
-                alert('Texto copiado: ' + input.value); // Puedes cambiarlo por otra señal visual
-            })
-            .catch(err => {
-                console.error('Error al copiar: ', err);
-            });
+      // Copia al portapapeles
+      navigator.clipboard.writeText(input.value)
+        .then(() => {
+          alert('Texto copiado: ' + input.value);
+        })
+        .catch(err => {
+          console.error('Error al copiar: ', err);
+          // Fallback para navegadores que no soportan clipboard API
+          try {
+            document.execCommand('copy');
+            alert('Texto copiado: ' + input.value);
+          } catch (fallbackErr) {
+            alert('No se pudo copiar automáticamente. Valor: ' + input.value);
+          }
+        });
     }
 
     // Evento al tocar/clic
     input.addEventListener('click', copiarAlPortapapeles);
+  }
+});
 
 // Modificar abrirCalculadora para usar nombres consistentes
 function abrirCalculadora() {
