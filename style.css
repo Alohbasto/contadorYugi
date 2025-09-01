@@ -268,7 +268,7 @@ body {
 
 #CalculadoraModal > div:nth-of-type(2) {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   gap: 10px;
   margin-bottom: 15px;
 }
@@ -302,7 +302,7 @@ body {
 #CalculadoraModal button[onclick*="calcularResultado"] {
   background: #48dbfb;
   color: white;
-  grid-column: span 4;
+  grid-column: span 5;
 }
 
 #CalculadoraModal form button {
@@ -312,6 +312,18 @@ body {
   color: white;
   font-size: 1rem;
 }
+
+/* modificar el orden de los botones en calculadora */
+#CalculadoraModal button[onclick*="limpiarCalculadora"] {
+  grid-column: span 2;
+}
+#CalculadoraModal button[onclick*="retrocesoCalculadora"] {
+  grid-column: span 2;
+}
+
+
+
+
 
 /* Estilos específicos para el modal de LP */
 #lpModal {
@@ -462,7 +474,6 @@ body {
   max-height: none;
 }
 
-/* Media Queries */
 /* Media Queries */
 
 /* Pantallas muy pequeñas (móviles pequeños) */

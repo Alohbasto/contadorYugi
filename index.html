@@ -20,7 +20,7 @@
     <link rel="icon" sizes="512X512" href="icon-512.png" type="image/png">
 
     <!-- base git -->
-     <base href="/contadorYugi/">
+    <!-- <base href="/contadorYugi/"> -->
     <!-- estilos -->
     <link rel="stylesheet" href="style.css">
     <title>Contador de vida</title>
@@ -32,26 +32,34 @@
         <div id="lifePoints__P1" class="lifePoints">8000</div>
         <div id="botones__P1" class="botones">
             <!-- Para abrir la calculadora que modifique los LP -->
-            <button id="lpMod__P1" class="lifePoints__Mod" onclick="lpModCalculadora(1)"><img src="iconos/lp.webp" alt="boton Vida">LP</button>
+            <button id="lpMod__P1" class="lifePoints__Mod" onclick="lpModCalculadora(1)"><img src="iconos/lp.webp"
+                    alt="boton Vida">LP</button>
             <!-- dado de seis -->
-            <button id="dado__P1" class="dado" onclick="tirarDado()"><img src="iconos/dadoAngel.webp" alt="dado1">Dado</button>
+            <button id="dado__P1" class="dado" onclick="tirarDado()"><img src="iconos/dadoAngel.webp"
+                    alt="dado1">Dado</button>
             <!-- cara o cruz -->
-            <button id="moneda__P1" class="moneda" onclick="tirarMoneda()"><img src="iconos/moneda.webp" alt="moneda">Moneda</button>
+            <button id="moneda__P1" class="moneda" onclick="tirarMoneda()"><img src="iconos/moneda.webp"
+                    alt="moneda">Moneda</button>
             <!-- Para abrir la calculadora (no modifica los LP, uso: ej.calcular la diferencia de atk) -->
-            <button id="cal__P1" class="calculadora" onclick="abrirCalculadora()"><img src="iconos/calculadora.webp" alt="calculadora">Calculadora</button>
+            <button id="cal__P1" class="calculadora" onclick="abrirCalculadora()"><img src="iconos/calculadora.webp"
+                    alt="calculadora">Calculadora</button>
         </div>
     </section>
     <section id="jugador2">
         <div id="lifePoints__P2" class="lifePoints">8000</div>
         <div id="botones__P2" class="botones">
             <!-- Para abrir la calculadora que modifique los LP -->
-            <button id="lpMod__P2" class="lifePoints__Mod" onclick="lpModCalculadora(2)"><img src="iconos/lp.webp" alt="boton Vida">LP</button>
+            <button id="lpMod__P2" class="lifePoints__Mod" onclick="lpModCalculadora(2)"><img src="iconos/lp.webp"
+                    alt="boton Vida">LP</button>
             <!-- dado de seis -->
-            <button id="dado__P2" class="dado" onclick="tirarDado()"><img src="iconos/dadoCraneo.webp" alt="dado1">Dado</button>
+            <button id="dado__P2" class="dado" onclick="tirarDado()"><img src="iconos/dadoCraneo.webp"
+                    alt="dado1">Dado</button>
             <!-- cara o cruz -->
-            <button id="moneda__P2" class="moneda" onclick="tirarMoneda()"><img src="iconos/moneda.webp" alt="moneda">Moneda</button>
+            <button id="moneda__P2" class="moneda" onclick="tirarMoneda()"><img src="iconos/moneda.webp"
+                    alt="moneda">Moneda</button>
             <!-- Para abrir la calculadora (no modifica los LP, uso: ej.calcular la diferencia de atk) -->
-            <button id="cal__P2" class="calculadora" onclick="abrirCalculadora()"><img src="iconos/calculadora.webp" alt="calculadora">Calculadora</button>
+            <button id="cal__P2" class="calculadora" onclick="abrirCalculadora()"><img src="iconos/calculadora.webp"
+                    alt="calculadora">Calculadora</button>
         </div>
     </section>
     <!-- reinicio -->
@@ -97,22 +105,33 @@
             <input type="text" id="pantallaCalculadora" readonly>
         </div>
         <div>
+            <!-- Fila 1 -->
             <button onclick="limpiarCalculadora()">C</button>
             <button onclick="retrocesoCalculadora()">⬅</button>
-            <button onclick="entradaCalculadora('9')">9</button>
-            <button onclick="entradaCalculadora('8')">8</button>
+            <button onclick="operacionCalculadora('/')">/</button>
+
+            <!-- Fila 2 -->
             <button onclick="entradaCalculadora('7')">7</button>
-            <button onclick="entradaCalculadora('6')">6</button>
-            <button onclick="entradaCalculadora('5')">5</button>
+            <button onclick="entradaCalculadora('8')">8</button>
+            <button onclick="entradaCalculadora('9')">9</button>
+            <button onclick="entradaCalculadora('000')">000</button>
+            <button onclick="operacionCalculadora('*')">*</button>
+
+            <!-- Fila 3 -->
             <button onclick="entradaCalculadora('4')">4</button>
-            <button onclick="entradaCalculadora('3')">3</button>
-            <button onclick="entradaCalculadora('2')">2</button>
+            <button onclick="entradaCalculadora('5')">5</button>
+            <button onclick="entradaCalculadora('6')">6</button>
+            <button onclick="entradaCalculadora('00')">00</button>
+            <button onclick="operacionCalculadora('-')">-</button>
+
+            <!-- Fila 4-->
             <button onclick="entradaCalculadora('1')">1</button>
+            <button onclick="entradaCalculadora('2')">2</button>
+            <button onclick="entradaCalculadora('3')">3</button>
             <button onclick="entradaCalculadora('0')">0</button>
             <button onclick="operacionCalculadora('+')">+</button>
-            <button onclick="operacionCalculadora('-')">-</button>
-            <button onclick="operacionCalculadora('*')">*</button>
-            <button onclick="operacionCalculadora('/')">/</button>
+
+            <!-- Resultado -->
             <button onclick="calcularResultado()">=</button>
         </div>
         <form method="dialog">
@@ -127,8 +146,8 @@
             <div class="selector-fondo">
                 <h3>Fondo Jugador 1</h3>
                 <select id="fondoP1Select" onchange="cambiarFondo(1)">
-                    <option value="albaz.webp" >Albaz</option>
-                    <option value="adventurer_token.webp" >Aventureros</option>
+                    <option value="albaz.webp">Albaz</option>
+                    <option value="adventurer_token.webp">Aventureros</option>
                     <option value="aqua.webp">Aqua</option>
                     <option value="cyberDragon.webp">Cyber Dragon</option>
                     <option value="derrota_almas.webp">Derrota Almas</option>
