@@ -193,6 +193,28 @@ function retrocesoCalculadora() {
   actualizarPantallaCalculadora();
 }
 
+// copiar valor del resultado de la calculadora
+const input = document.getElementById('pantallaCalculadora');
+
+    // Función para copiar al portapapeles
+    function copiarAlPortapapeles() {
+        // Selecciona el texto
+        input.select();
+        input.setSelectionRange(0, 99999); // Para móviles
+
+        // Copia al portapapeles
+        navigator.clipboard.writeText(input.value)
+            .then(() => {
+                alert('Texto copiado: ' + input.value); // Puedes cambiarlo por otra señal visual
+            })
+            .catch(err => {
+                console.error('Error al copiar: ', err);
+            });
+    }
+
+    // Evento al tocar/clic
+    input.addEventListener('click', copiarAlPortapapeles);
+
 // Modificar abrirCalculadora para usar nombres consistentes
 function abrirCalculadora() {
   if (calcAbierta) return;
